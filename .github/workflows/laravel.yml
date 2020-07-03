@@ -30,3 +30,17 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
+    - name: Codecov
+      uses: codecov/codecov-action@v1.0.10
+      with:
+        # User defined upload name. Visible in Codecov UI
+        name: Upload coverage to Codecov
+        # Repository upload token - get it from codecov.io. Required only for private repositories
+        token: b4bf47b9-00c0-453d-980b-05802a9e8e28
+        # Path to coverage file to upload
+        file: ./coverage.xml
+        # Flag upload to group coverage metrics (e.g. unittests | integration | ui,chrome)
+        flags: tests
+        # Environment variables to tag the upload with (e.g. PYTHON | OS,PYTHON)
+        # Specify whether or not CI build should fail if Codecov runs into an error during upload
+        fail_ci_if_error: true
